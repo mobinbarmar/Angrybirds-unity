@@ -13,11 +13,11 @@ public class PlayAgain : MonoBehaviour
     //untuk ke level 2
     public void nextScene()
     {
-        SceneManager.LoadScene("Level2");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     //untuk ke level 1
     public void prevScene()
     {
-        SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

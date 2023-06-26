@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+
+
 public class Enemy : MonoBehaviour
 {
     public float Health = 50f;
@@ -10,6 +12,13 @@ public class Enemy : MonoBehaviour
     public UnityAction<GameObject> OnEnemyDestroyed = delegate { };
 
     private bool _isHit = false;
+
+    public AudioClip damageAud;
+    AudioSource m_MyAudioSource;
+
+    void Start(){
+        m_MyAudioSource = GetComponent<AudioSource>();
+    }
 
     void OnDestroy()
     {
@@ -22,6 +31,7 @@ public class Enemy : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         if (col.gameObject.GetComponent<Rigidbody2D>() == null) return;
+            m_MyAudioSource.PlayOneShot(damageAud);
 
         if (col.gameObject.tag == "Bird")
         {

@@ -19,18 +19,24 @@ public class Bird : MonoBehaviour
     private float _minVelocity = 0.05f;
     private bool _flagDestroy = false;
 
+    public AudioClip fly;
+    public AudioClip colision;
+    AudioSource m_MyAudioSource;
+
     // Mematikan fungsi physics dan collider dari burung
     void Start()
     {
         RigidBody.bodyType = RigidbodyType2D.Kinematic;
         Collider.enabled = false;
         _state = BirdState.Idle;
+        m_MyAudioSource = GetComponent<AudioSource>();
     }
 
     void OnDestroy()
     {
-        if (_state == BirdState.Thrown || _state == BirdState.HitSomething)
+        if (_state == BirdState.Thrown || _state == BirdState.HitSomething){
             OnBirdDestroyed();
+        }
     }
 
     void OnCollisionEnter2D(Collision2D col)
@@ -44,12 +50,14 @@ public class Bird : MonoBehaviour
             RigidBody.velocity.sqrMagnitude >= _minVelocity)
         {
             _state = BirdState.Thrown;
+            m_MyAudioSource.PlayOneShot(fly);
         }
 
         if ((_state == BirdState.Thrown || _state == BirdState.HitSomething) &&
             RigidBody.velocity.sqrMagnitude < _minVelocity &&
             !_flagDestroy)
         {
+            m_MyAudioSource.PlayOneShot(colision);
             //Hancurkan gameobject setelah 2 detik
             //jika kecepatannya sudah kurang dari batas minimum
             _flagDestroy = true;
