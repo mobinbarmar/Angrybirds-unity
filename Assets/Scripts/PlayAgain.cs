@@ -20,4 +20,28 @@ public class PlayAgain : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
+    public void L1()
+    {
+        SceneManager.LoadScene("Level1");
+    }
+    public void L2()
+    {
+        SceneManager.LoadScene("Level2");
+    }
+    public void L3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+    public void L4()
+    {
+        SceneManager.LoadScene("Level4");
+    }
+    public void L5()
+    {
+        SceneManager.LoadScene("Level5");
+    }
+    public void Menu()
+    {
+        SceneManager.LoadScene("Home");
+    }
 }
