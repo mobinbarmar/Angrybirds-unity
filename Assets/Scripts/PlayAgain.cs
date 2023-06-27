@@ -44,4 +44,8 @@ public class PlayAgain : MonoBehaviour
     {
         SceneManager.LoadScene("Home");
     }
+    public void AboutUs()
+    {
+        SceneManager.LoadScene("About");
+    }
 }
